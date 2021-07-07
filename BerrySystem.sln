@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BerrySystem.Api", "BerrySystem.Api\BerrySystem.Api.csproj", "{D08BCD10-CE26-4280-A3EA-179830BFBE99}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2D9B8072-526D-4DEF-9BF1-CB646E485D0B} = {2D9B8072-526D-4DEF-9BF1-CB646E485D0B}
+		{0AEDF3D6-70C0-44DB-936F-971B085B1515} = {0AEDF3D6-70C0-44DB-936F-971B085B1515}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BerrySystem.Core", "BerrySystem.Core\BerrySystem.Core.csproj", "{0AEDF3D6-70C0-44DB-936F-971B085B1515}"
 EndProject
@@ -11,9 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BerrySystem.Infrastructure"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{74AED6E4-99A7-4501-A88F-05A5875B23F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BerrySystem.IntegrationTests", "BerrySystem.IntegrationTests\BerrySystem.IntegrationTests.csproj", "{6626FD65-A330-4ED3-BD2D-8485E274BC4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BerrySystem.IntegrationTests", "BerrySystem.IntegrationTests\BerrySystem.IntegrationTests.csproj", "{6626FD65-A330-4ED3-BD2D-8485E274BC4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BerrySystem.UnitTests", "BerrySystem.UnitTests\BerrySystem.UnitTests.csproj", "{ABE704EB-6D75-4559-90C7-C5459AE453CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BerrySystem.UnitTests", "BerrySystem.UnitTests\BerrySystem.UnitTests.csproj", "{ABE704EB-6D75-4559-90C7-C5459AE453CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
