@@ -15,9 +15,9 @@ namespace BerrySystem.Core.Entities
 
         public int Id { get; set; }
         public string Descripcion { get; set; }
-        public decimal? PrecioCosecha { get; set; }
-        public decimal? PrecioVenta { get; set; }
-        public decimal? PrecioCompra { get; set; }
+        public int? PrecioCosecha { get; set; }
+        public int? PrecioVenta { get; set; }
+        public int? PrecioCompra { get; set; }
 
         public virtual ICollection<DetalleCosecha> DetalleCosecha { get; set; }
     }

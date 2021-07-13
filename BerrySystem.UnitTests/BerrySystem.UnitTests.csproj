@@ -19,4 +19,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BerrySystem.Api\BerrySystem.Api.csproj" />
+    <ProjectReference Include="..\BerrySystem.Core\BerrySystem.Core.csproj" />
+    <ProjectReference Include="..\BerrySystem.Infrastructure\BerrySystem.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
