@@ -1,5 +1,7 @@
 using AutoMapper;
+using BerrySystem.Core.Interfaces;
 using BerrySystem.Infrastructure.Data;
+using BerrySystem.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +31,8 @@ namespace BerrySystem.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTransient<IProductRespository, ProductRespository>();
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddDbContext<BerrySystemContext>(options =>

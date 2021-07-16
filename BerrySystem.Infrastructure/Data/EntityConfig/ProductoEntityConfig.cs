@@ -10,7 +10,7 @@ namespace BerrySystem.Infrastructure.Data.EntityConfig
         {
             //entity.Property(e => e.Id).ValueGeneratedNever(); // Para evitar generar Id autonumerico
 
-           // builder.ToTable("Cosechas"); //En el caso de que nuestra tablam tenga un nombre diferente
+           // builder.ToTable("Productos"); //En el caso de que nuestra tablam tenga un nombre diferente
             
             builder.HasKey(e => e.Id);
 
@@ -19,16 +19,16 @@ namespace BerrySystem.Infrastructure.Data.EntityConfig
                 .HasMaxLength(50);
 
             builder.Property(e => e.PrecioCompra)
-                .HasColumnName("Precio_Compra")
-                .HasColumnType("money");
+                .HasColumnName("Precio_Compra");
+            //.HasColumnType("money");
 
             builder.Property(e => e.PrecioCosecha)
-                .HasColumnName("Precio_Cosecha")
-                .HasColumnType("money");
+                .HasColumnName("Precio_Cosecha");
+                //.HasColumnType("money");
 
             builder.Property(e => e.PrecioVenta)
-                .HasColumnName("Precio_Venta")
-                .HasColumnType("money");
+                .HasColumnName("Precio_Venta");
+                //.HasColumnType("money");
         }
     }
 }
