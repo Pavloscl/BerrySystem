@@ -31,9 +31,13 @@ namespace BerrySystem.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddTransient<IProductRespository, ProductRespository>();
+            services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddControllersWithViews()
+    .AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
 
             services.AddDbContext<BerrySystemContext>(options =>
                           options.UseSqlServer

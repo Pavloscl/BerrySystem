@@ -3,22 +3,22 @@ using BerrySystem.Core.Interfaces;
 using BerrySystem.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BerrySystem.Infrastructure.Repositories
 {
-    public class ProductRespository : IProductRespository
+    public class ProductosRepository  : BaseRepository<Productos>, IProductRepository
     {
         private readonly BerrySystemContext _context;
 
-        public ProductRespository(BerrySystemContext context)
+        public ProductosRepository(BerrySystemContext context) : base(context)
         {
             _context = context;
         }
 
         public async Task<IEnumerable<Productos>> GetProduct()
         {
+            
             var productos = await _context.Productos.ToListAsync();
             
 
