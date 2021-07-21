@@ -1,5 +1,4 @@
-﻿using BerrySystem.Core.Entities;
-using BerrySystem.Core.Interfaces;
+﻿using BerrySystem.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -9,21 +8,19 @@ namespace BerrySystem.Api.Controllers
     [ApiController]
     public class ProductosController : ControllerBase
     {
-      
-        private readonly IRepository<Productos> _productRepository;
-        public ProductosController(
-           
-            IRepository<Productos> productRepository)
+
+        private readonly IProductosService _productoService;
+        public ProductosController(IProductosService productosService)
         {
-          
-            _productRepository = productRepository;
+
+            _productoService = productosService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetProduct()
         {
-           
-            var product = await _productRepository.GetAll();
+
+            var product = await _productoService.GetProducts();
            
             
             return Ok (product);

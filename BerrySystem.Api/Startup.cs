@@ -1,5 +1,6 @@
 using AutoMapper;
 using BerrySystem.Core.Interfaces;
+using BerrySystem.Core.Services;
 using BerrySystem.Infrastructure.Data;
 using BerrySystem.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -32,6 +33,8 @@ namespace BerrySystem.Api
         {
             services.AddControllers();
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+            //services.AddTransient<IProductRepository, ProductosRepository>();
+            services.AddTransient<IProductosService, ProductosService>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllersWithViews()
