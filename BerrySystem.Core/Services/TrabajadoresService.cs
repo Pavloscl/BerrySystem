@@ -14,29 +14,33 @@ namespace BerrySystem.Core.Services
             _trabajadoresRepository = trabajadoresRepository;
         }
 
-        public  Task<IEnumerable<Trabajadores>> GetTrabajadores()
+        public async Task<IEnumerable<Trabajadores>> GetTrabajadores()
         {
-            throw new System.NotImplementedException();
+            var trabajadores = await _trabajadoresRepository.GetAll();
+            return trabajadores;
         }
 
-        public Task<Trabajadores> GetTrabajador(int id)
+        public async Task<Trabajadores> GetTrabajador(int id)
         {
-            throw new System.NotImplementedException();
+            var trabajador = await _trabajadoresRepository.GetById(id);
+            return trabajador;
         }
 
-        public Task InsertTrabajador(Trabajadores producto)
+        public async Task InsertTrabajador(Trabajadores trabajador)
         {
-            throw new System.NotImplementedException();
+            await _trabajadoresRepository.Add(trabajador);
         }
 
-        public Task<bool> UpDateTrabajador(Trabajadores producto)
+        public async Task<bool> UpDateTrabajador(Trabajadores trabajador)
         {
-            throw new System.NotImplementedException();
+            await _trabajadoresRepository.Update(trabajador);
+            return true;
         }
 
-        public Task<bool> DeleteTrabajador(int id)
+        public async Task<bool> DeleteTrabajador(int id)
         {
-            throw new System.NotImplementedException();
+            await _trabajadoresRepository.Delete(id);
+            return true;
         }
     }
 }

@@ -16,56 +16,62 @@ namespace BerrySystem.Core.Services
             _prestProdRepository = prestProdRepository;
         }
 
-        public Task<IEnumerable<PresentacionProductos>> GetPrestProds()
+        //Mantenedor Sectores
+        public async Task<IEnumerable<Sectores>> GetSectores()
         {
-            throw new System.NotImplementedException();
+            var sectores = await _sectoresRepository.GetAll();
+            return sectores;
         }
 
-        public Task<IEnumerable<Sectores>> GetSectores()
+        public async Task<Sectores> GetSector(int id)
         {
-            throw new System.NotImplementedException();
+            var sector = await _sectoresRepository.GetById(id);
+            return sector;
+        }
+        public async Task InsertSector(Sectores sector)
+        {
+            await _sectoresRepository.Add(sector);
         }
 
-        public Task<PresentacionProductos> GetPrestProd(int id)
+        public async Task<bool> UpDateSector(Sectores sector)
         {
-            throw new System.NotImplementedException();
+            await _sectoresRepository.Update(sector);
+            return true;
         }
 
-        public Task<Sectores> GetSector(int id)
+        public async Task<bool> DeleteSectores(int id)
         {
-            throw new System.NotImplementedException();
+            await _sectoresRepository.Delete(id);
+            return true;
         }
 
-        public Task InsertPrestProd(PresentacionProductos sectores)
+        //Mantenedor Presentacion Productos
+        public async Task<IEnumerable<PresentacionProductos>> GetPrestProds()
         {
-            throw new System.NotImplementedException();
+            var prestProd = await _prestProdRepository.GetAll();
+            return prestProd;
         }
 
-        public Task InsertSector(Sectores sectores)
+        public async Task<PresentacionProductos> GetPrestProd(int id)
         {
-            throw new System.NotImplementedException();
+            var prestProd = await _prestProdRepository.GetById(id);
+            return prestProd;
         }
 
-        public Task<bool> UpDatePrestProd(PresentacionProductos Sectores)
+        public async Task InsertPrestProd(PresentacionProductos prestProd)
         {
-            throw new System.NotImplementedException();
+            await _prestProdRepository.Add(prestProd);
         }
 
-        public Task<bool> UpDateSector(Sectores Sectores)
+        public async Task<bool> UpDatePrestProd(PresentacionProductos prestProd)
         {
-            throw new System.NotImplementedException();
+            await _prestProdRepository.Update(prestProd);
+            return true;
         }
-
-        public Task<bool> DeletePrestProd(int id)
+        public async Task<bool> DeletePrestProd(int id)
         {
-            throw new System.NotImplementedException();
+            await _prestProdRepository.Delete(id);
+            return true;
         }
-
-        public Task<bool> DeleteSectores(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
- 
     }
 }

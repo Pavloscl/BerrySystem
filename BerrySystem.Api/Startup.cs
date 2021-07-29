@@ -35,6 +35,9 @@ namespace BerrySystem.Api
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             //services.AddTransient<IProductRepository, ProductosRepository>();
             services.AddTransient<IProductosService, ProductosService>();
+            services.AddTransient<IMantenedoresService, MantenedoresService>();
+            services.AddTransient<ITrabajadoresService, TrabajadoresService>();
+
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllersWithViews()

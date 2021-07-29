@@ -19,24 +19,27 @@ namespace BerrySystem.Core.Services
             return productos;
         }
 
-        public Task<Productos> GetProduct(int id)
+        public async Task<Productos> GetProduct(int id)
         {
-            throw new System.NotImplementedException();
+            var productos = await _productRepository.GetById(id);
+            return productos;
         }
 
-        public Task InsertProduct(Productos producto)
+        public async  Task InsertProduct(Productos producto)
         {
-            throw new System.NotImplementedException();
+              await _productRepository.Add(producto);
         }
 
-        public Task<bool> UpDateProduct(Productos producto)
+        public async  Task<bool> UpDateProduct(Productos producto)
         {
-            throw new System.NotImplementedException();
+          await  _productRepository.Update(producto);
+           return true;
         }
-
-        public Task<bool> DeleteProduct(int id)
+         
+        public async Task<bool> DeleteProduct(int id)
         {
-            throw new System.NotImplementedException();
+            await _productRepository.Delete(id);
+            return true;
         }
 
     }

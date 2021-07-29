@@ -35,11 +35,11 @@ namespace BerrySystem.Infrastructure.Repositories
             // UnitOfWork se encanrga de manejar las transaciones a nivel de aplicacion 
             await _context.SaveChangesAsync();
         }
-        public void Update(T entity)
+        public  async Task Update(T entity)
         {
 
             _entities.Update(entity);
-            _context.SaveChangesAsync();
+           await _context.SaveChangesAsync();
 
         }
 
