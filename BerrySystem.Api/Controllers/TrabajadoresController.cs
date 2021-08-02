@@ -1,4 +1,6 @@
-﻿using BerrySystem.Core.Entities;
+﻿using AutoMapper;
+using BerrySystem.Core.DTOs;
+using BerrySystem.Core.Entities;
 using BerrySystem.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,23 +17,28 @@ namespace BerrySystem.Api.Controllers
     public class TrabajadoresController : ControllerBase
     {
         private readonly ITrabajadoresService _trabajadoresService;
-        public TrabajadoresController(ITrabajadoresService trabajadoresService)
+        private readonly IMapper _mapper;
+
+        public TrabajadoresController(ITrabajadoresService trabajadoresService, IMapper mapper)
         {
             _trabajadoresService = trabajadoresService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetTrabajadores()
         {
             var trabajadores = await _trabajadoresService.GetTrabajadores();
-            return Ok(trabajadores);
+            var trabajadoresDto= _mapper.Map<IEnumerable<TrabajadoresDto>>(trabajadores);
+            return Ok(trabajadoresDto);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTrabajador(int id)
         {
             var trabajador = await _trabajadoresService.GetTrabajador(id);
-            return Ok(trabajador);
+            var trabajadorDto = _mapper.Map<TrabajadoresDto>(trabajador);
+            return Ok(trabajadorDto);
         }
 
         [HttpPost]
@@ -42,8 +49,10 @@ namespace BerrySystem.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpDateTrabajador(int id, Trabajadores trabajadores)
+        public async Task<IActionResult> UpDateTrabajador(int id, TrabajadoresDto trabajadoresDto)
         {
+            var trabajadores= _mapper.Map<Trabajadores>(trabajadoresDto);
+            trabajadores.Id = id;
             await _trabajadoresService.UpDateTrabajador(trabajadores);
             return Ok(true);
         }

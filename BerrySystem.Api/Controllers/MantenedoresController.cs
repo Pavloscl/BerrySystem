@@ -1,6 +1,9 @@
-﻿using BerrySystem.Core.Entities;
+﻿using AutoMapper;
+using BerrySystem.Core.DTOs;
+using BerrySystem.Core.Entities;
 using BerrySystem.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BerrySystem.Api.Controllers
@@ -10,10 +13,13 @@ namespace BerrySystem.Api.Controllers
     public class MantenedoresController : ControllerBase
     {
         private readonly IMantenedoresService _mantenedoresService;
-        public MantenedoresController(IMantenedoresService mantenedoresService)
+        private readonly IMapper _mapper;
+
+        public MantenedoresController(IMantenedoresService mantenedoresService, IMapper mapper)
         {
 
             _mantenedoresService = mantenedoresService;
+            _mapper = mapper;
         }
         //Mantenedor Sectores
         //  Api/Mantenedores/Sectores
@@ -21,9 +27,9 @@ namespace BerrySystem.Api.Controllers
         [Route("Sectores")]
         public async Task<IActionResult> GetSectores()
         {
-
             var sectores = await _mantenedoresService.GetSectores();
-            return Ok(sectores);
+            var sectoresDto = _mapper.Map<IEnumerable<SectoresDto>>(sectores);
+            return Ok(sectoresDto);
 
         }
 
@@ -32,22 +38,25 @@ namespace BerrySystem.Api.Controllers
         public async Task<IActionResult> GetSector(int id)
         {
             var sector = await _mantenedoresService.GetSector(id);
-            return Ok(sector);
+            var sectorDto = _mapper.Map<SectoresDto>(sector);
+            return Ok(sectorDto);
         }
 
         [HttpPost]
         [Route("Sectores")]
-        public async Task<IActionResult> CreateSector(Sectores sector)
+        public async Task<IActionResult> CreateSector(SectoresDto sectorDto)
         {
+            var sector= _mapper.Map<Sectores>(sectorDto);
             await _mantenedoresService.InsertSector(sector);
             return Ok();
         }
 
         [HttpPut]
         [Route("Sectores")]
-        public async Task<IActionResult> UpDateSector(int id, Sectores sector)
+        public async Task<IActionResult> UpDateSector(int id, SectoresDto sectorDto)
         {
-
+            var sector= _mapper.Map<Sectores>(sectorDto);
+            sector.Id = id;
             await _mantenedoresService.UpDateSector(sector);
             return Ok(true);
         }
@@ -64,10 +73,9 @@ namespace BerrySystem.Api.Controllers
         [HttpGet("PrestProd")]
         public async Task<IActionResult> GetPrestProds()
         {
-
             var prestProds = await _mantenedoresService.GetPrestProds();
-            return Ok(prestProds);
-
+            var prestProdsDto= _mapper.Map<IEnumerable<PresentacionProductosDto>>(prestProds);
+            return Ok(prestProdsDto);
         }
 
         [HttpGet("PrestProd/{id}")]
@@ -75,20 +83,23 @@ namespace BerrySystem.Api.Controllers
         public async Task<IActionResult> GetPrestProd(int id)
         {
             var prestProd = await _mantenedoresService.GetPrestProd(id);
+            var prestProdDto = _mapper.Map<PresentacionProductosDto>(prestProd);
             return Ok(prestProd);
         }
 
         [HttpPost("PrestProd")]
-        public async Task<IActionResult> CreatePrestProd(PresentacionProductos prestProd)
+        public async Task<IActionResult> CreatePrestProd(PresentacionProductosDto prestProdDto)
         {
+            var prestProd= _mapper.Map<PresentacionProductos>(prestProdDto);
             await _mantenedoresService.InsertPrestProd(prestProd);
             return Ok();
         }
 
         [HttpPut("PrestProd")]
-        public async Task<IActionResult> UpDatePrestProd(int id, PresentacionProductos prestProd)
+        public async Task<IActionResult> UpDatePrestProd(int id, PresentacionProductosDto prestProdDto)
         {
-
+            var prestProd = _mapper.Map<PresentacionProductos>(prestProdDto);
+            prestProd.Id = id;
             await _mantenedoresService.UpDatePrestProd(prestProd);
             return Ok(true);
         }

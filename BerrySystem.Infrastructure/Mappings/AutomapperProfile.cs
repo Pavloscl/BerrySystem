@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using BerrySystem.Core.DTOs;
 using BerrySystem.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BerrySystem.Infrastructure.Mappings
 {
